@@ -1,53 +1,74 @@
 package Sockets;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.io.*;
 
 public class Cliente {
 
 
-    /** The port. */
-    final int port = 8080;
+    /**
+     * port.
+     */
+    final int PORT = 8080;
 
-    /** The address. */
+    /**
+     * ip.
+     */
     String address = "localhost";
 
-    /** The socket. */
+    /**
+     * Constante del socket
+     */
     Socket socket;
 
+    /**
+     * Variables
+     */
+    BufferedReader entrada;
 
-    public Cliente() {
-        try {
-            socket = new Socket(this.address,this.port);
-            System.out.println("Hola desde el cliente");
-            //creamos el flujo de datos por el que se enviara un mensaje
-            DataInputStream entradaDatos = new DataInputStream(socket.getInputStream());
-            DataOutputStream mensaje = new DataOutputStream(socket.getOutputStream());
+    String mensajeRecibido;
 
-            //enviamos el mensaje
-            mensaje.writeUTF("H123");
-            System.out.println("Cerrando conexión...Cliente");
 
-            //leer mensaje
-            String msg = entradaDatos.readUTF();
-            System.out.println(msg);
+    public Cliente() throws IOException {
+        try
+        {
+            //Se crea el socket para la conexion
+            Socket s = new Socket(address,PORT);
 
-            //cerramos la conexión
-            entradaDatos.close();
-            socket.close();
-        } catch (UnknownHostException e) {
-            //IP failed
-            System.out.println("Cannot find ip address");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Cannot find server port");
+            //salida de datos al servidor
+            OutputStream os = s.getOutputStream();
+
+            //Entrada de datos, lectura de mensajes del servidor
+            entrada = new BufferedReader(new InputStreamReader(
+                    s.getInputStream()));
+            String mensajeRecibido = entrada.readLine();
+            System.out.println(mensajeRecibido);
+
+            //Envio de respuesta al server
+            PrintWriter pw = new PrintWriter(os);
+            pw.println("hola mundo desde el Cliente\n");
+
+            //Cierre de conexiones
+            pw.flush();
+            pw.close();
+            s.close();
+
+            //Parse del json recibido desde el server server
+            Object obj=JSONValue.parse(mensajeRecibido);
+            JSONObject jsonObject = (JSONObject) obj;
+            Long vidas = (Long) jsonObject.get("vidas");
+            System.out.println(vidas);
+
         }
-
-
+        catch(Exception e){
+            System.out.println(e);}
     }
 
 
 }
+
+
