@@ -109,8 +109,6 @@ public class Player extends JPanel implements ActionListener{
         for (Ghost ghost: ghosts){
             Integer fanx = ghost.getX();
             Integer fany = ghost.getY();
-            System.out.println();
-            System.out.print("Nombre: "+ghost.getName() +" , X: " + fanx+ " , Y: "+ fany);
 
             nivel.setAInfo(fanx,fany,58);
             matriz[fany][fanx].setIcon(ghost.getImageGhost());

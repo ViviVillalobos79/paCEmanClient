@@ -10,5 +10,8 @@ public abstract class Commandos {
         this.player = player;
     }
 
+    /**
+     * Executes the command
+     */
     public abstract void ejecutar();
 }

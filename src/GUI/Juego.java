@@ -120,10 +120,12 @@ public class Juego {
                     jugador = JOptionPane.showInputDialog(ventana, "Debes ingresar un usuario", "Escribe aqui");
                 }
 
-                menu.setVisible(false);
-                Tablero tablero = new Tablero();
-                tablero.setJugador(jugador);
-                tablero.jugar(ventana, menu);
+                ventana.setVisible(false);
+                PlayerWindow playerWindow = new PlayerWindow();
+                playerWindow.setVisible(true);
+                //Tablero tablero = new Tablero();
+                //tablero.setJugador(jugador);
+                //tablero.jugar(ventana, menu);
 
             }
         });

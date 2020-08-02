@@ -22,6 +22,12 @@ public class Ghost extends Sprite{
         loadImages();
     }
 
+    /**
+     * Another constructor
+     * @param levelNum to be use for the path that they follow
+     * @param ghostColor color of the ghost
+     * @param name name of ghost
+     */
     public Ghost(Integer levelNum, Integer ghostColor, String name){
         super(2,1);
         loadImages();
@@ -32,6 +38,9 @@ public class Ghost extends Sprite{
 
     }
 
+    /**
+     * Sets the first position for default for each ghost
+     */
     public void setInitPosition(){
         if(name.equals("Clyde")){
             this.setX(11);
@@ -59,10 +68,16 @@ public class Ghost extends Sprite{
         this.name = name;
     }
 
+    /**
+     * Is going to handle the movement
+     */
     public void mover(){
 
     }
 
+    /**
+     * Loads images for each ghost
+     */
     private void loadImages() {
         ghost_blue = new ImageIcon("src\\images\\ghost_blue.png");
         ghost_orange = new ImageIcon("src\\images\\ghost_orange.png");
@@ -71,6 +86,10 @@ public class Ghost extends Sprite{
 
     }
 
+    /**
+     * Get image depending of the ghost
+     * @return ImageIcon in regards of the ghost name
+     */
     public ImageIcon getImageGhost(){
         if(name.equals("Clyde")){
             return ghost_orange;
