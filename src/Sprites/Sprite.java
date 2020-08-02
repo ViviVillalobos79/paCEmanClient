@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class Sprite {
 
-    public static Integer x;
-    public static Integer y;
+    private Integer x;
+    private Integer y;
 
-    public static String imagename;
-    public static ImageIcon image;
+    private String imagename;
+    private ImageIcon image;
 
 
     /**
@@ -18,15 +18,15 @@ public class Sprite {
      * @param y position en Y del Sprite
      */
     public Sprite(Integer x, Integer y) {
-        Sprite.x = x;
-        Sprite.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     /**
      * Setes image as path define
      */
-    private static void setearImg() {
-        image = new ImageIcon(
+    private void setearImg() {
+        this.image = new ImageIcon(
                 "src\\images\\" + imagename + ".png");
     }
 
@@ -35,7 +35,7 @@ public class Sprite {
     }
 
     public void setX(Integer x) {
-        Sprite.x = x;
+        this.x = x;
     }
 
     public Integer getY() {
@@ -43,15 +43,15 @@ public class Sprite {
     }
 
     public void setY(Integer y) {
-        Sprite.y = y;
+        this.y = y;
     }
 
-    public static String getImagename() {
+    public String getImagename() {
         return imagename;
     }
 
-    public static void setImagename(String imagename) {
-        Sprite.imagename = imagename;
+    public void setImagename(String imagename) {
+        this.imagename = imagename;
         setearImg();
     }
 
@@ -59,8 +59,8 @@ public class Sprite {
         return image;
     }
 
-    public static void setImage(ImageIcon image) {
-        Sprite.image = image;
+    public void setImage(ImageIcon image) {
+        this.image = image;
     }
 }
 

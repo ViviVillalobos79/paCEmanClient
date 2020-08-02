@@ -5,6 +5,7 @@ import Data.Constants;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class Player extends JPanel implements ActionListener{
 
@@ -16,6 +17,8 @@ public class Player extends JPanel implements ActionListener{
     private static Integer levelNum;
 
     private static JLabel[][] matriz;
+
+    private final ArrayList<Ghost> ghosts = new ArrayList<>();
 
     private static String jugador;
     private static Integer puntos;
@@ -84,6 +87,7 @@ public class Player extends JPanel implements ActionListener{
             }
         }
         drawPacMan();
+        drawGhost();
     }
 
     /**
@@ -99,8 +103,22 @@ public class Player extends JPanel implements ActionListener{
         matriz[pacY][pacX].setBounds(10 + (pacX * 25), 10 + (pacY * 25), 25, 25);
         matriz[pacY][pacX].setVisible(true);
         this.add(matriz[pacY][pacX], 0);
+    }
 
+    public void drawGhost(){
+        for (Ghost ghost: ghosts){
+            Integer fanx = ghost.getX();
+            Integer fany = ghost.getY();
+            System.out.println();
+            System.out.print("Nombre: "+ghost.getName() +" , X: " + fanx+ " , Y: "+ fany);
 
+            nivel.setAInfo(fanx,fany,58);
+            matriz[fany][fanx].setIcon(ghost.getImageGhost());
+            matriz[fany][fanx].setBounds(10 + (fanx * 25), 10 + (fany * 25), 25, 25);
+            matriz[fany][fanx].setVisible(true);
+            this.add(matriz[fany][fanx],0);
+
+        }
     }
 
     /**
@@ -150,7 +168,6 @@ public class Player extends JPanel implements ActionListener{
                 switch (key) {
                     case KeyEvent.VK_RIGHT:
                         if (mat[py][px + 1] == 1 || mat[py][px + 1] == 0) {
-                            System.out.print("dere2");
                             pacman.setArriba(0);
                             pacman.setAbajo(0);
                             pacman.setDerecha(1);
@@ -159,7 +176,6 @@ public class Player extends JPanel implements ActionListener{
                         break;
                     case KeyEvent.VK_LEFT:
                         if (mat[py][px - 1] == 1 || mat[py][px - 1] == 0) {
-                            System.out.print("izq2");
                             pacman.setArriba(0);
                             pacman.setAbajo(0);
                             pacman.setDerecha(0);
@@ -168,7 +184,6 @@ public class Player extends JPanel implements ActionListener{
                         break;
                     case KeyEvent.VK_UP:
                         if (mat[py - 1][px] == 1 || mat[py - 1][px] == 0) {
-                            System.out.print("arriba2");
                             pacman.setArriba(1);
                             pacman.setAbajo(0);
                             pacman.setDerecha(0);
@@ -177,7 +192,6 @@ public class Player extends JPanel implements ActionListener{
                         break;
                     case KeyEvent.VK_DOWN:
                         if (mat[py + 1][px] == 1 || mat[py + 1][px] == 0) {
-                            System.out.print("abajo2");
                             pacman.setArriba(0);
                             pacman.setAbajo(1);
                             pacman.setDerecha(0);
@@ -219,7 +233,6 @@ public class Player extends JPanel implements ActionListener{
             drawMaze();
         }
         if(pacman.getDerecha() == 1 && (mat[py][px+1] == 1 || mat[py][px+1] == 0)){
-            System.out.print("Aqui");
             if(mat[py][px+1] == 1 ){
                 puntos = puntos+ 5;
                 record.setText("Puntos: "+ puntos);
@@ -263,5 +276,15 @@ public class Player extends JPanel implements ActionListener{
         this.setVisible(false);
     }
 
+    public Nivel getNivel() {
+        return nivel;
+    }
 
+    public Pacman getPacman() {
+        return pacman;
+    }
+
+    public ArrayList<Ghost> getGhosts() {
+        return ghosts;
+    }
 }

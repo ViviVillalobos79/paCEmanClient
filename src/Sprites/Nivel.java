@@ -111,7 +111,7 @@ public class Nivel {
         setLevelInfo();
     }
 
-    public static Integer getLevelNumber() {
+    public Integer getLevelNumber() {
         return levelNumber;
     }
 
