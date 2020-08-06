@@ -1,8 +1,6 @@
 package Sprites;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class Ghost extends Sprite{
@@ -44,7 +42,7 @@ public class Ghost extends Sprite{
         this.levelNum = levelNum;
         this.name = name;
         setInitPosition();
-        direccionx = random.nextInt(4);
+        //direccionx = random.nextInt(4);
 
     }
 
