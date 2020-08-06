@@ -202,12 +202,10 @@ public class Player extends JPanel implements ActionListener{
     }
 
     /**
-     * Changes pacman position
-     * @param e Event that is done
+     * Decide if pacman can move to an exact point
+     * @param mat matrix level
      */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Integer[][] mat = nivel.getLeveldat();
+    public void movePacman(Integer[][] mat){
         Integer py = pacman.getY();
         Integer px = pacman.getX();
         if(pacman.getArriba() == 1 && (mat[py-1][px] == 1 || mat[py-1][px] == 0)){
@@ -252,6 +250,26 @@ public class Player extends JPanel implements ActionListener{
             nivel.setAInfo(px,py,0);
             drawMaze();
         }
+    }
+
+    public void moveGhosts(Integer[][] mat){
+        for (Ghost ghost: ghosts) {
+            Integer fanx = ghost.getX();
+            Integer fany = ghost.getY();
+
+        }
+    }
+
+
+    /**
+     * Changes pacman position
+     * @param e Event that is done
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Integer[][] mat = nivel.getLeveldat();
+        movePacman(mat);
+        moveGhosts(mat);
         Integer enc = 0;
         for (Integer i = 0; i < mat.length && enc == 0; i++) {
             for (Integer j = 0; j < mat[i].length && enc == 0; j++) {

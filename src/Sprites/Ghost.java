@@ -1,12 +1,21 @@
 package Sprites;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class Ghost extends Sprite{
 
     private String name;
     private Integer ghostColor;
     private Integer levelNum;
+    private Timer timer;
+
+    Integer direccionx;
+    Integer direcciony;
+
+    private Random random;
 
     private ImageIcon ghost_blue, ghost_orange, ghost_red, ghost_pink;
 
@@ -35,6 +44,7 @@ public class Ghost extends Sprite{
         this.levelNum = levelNum;
         this.name = name;
         setInitPosition();
+        direccionx = random.nextInt(4);
 
     }
 

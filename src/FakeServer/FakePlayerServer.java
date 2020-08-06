@@ -28,6 +28,7 @@ public class FakePlayerServer extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 Commandos crearGhost = new CrearFantasma(player, getGhostColor(getGhostName()), getGhostName());
                 crearGhost.ejecutar();
+
             }
         });
     }

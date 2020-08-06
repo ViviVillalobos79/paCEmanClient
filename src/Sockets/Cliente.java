@@ -1,8 +1,8 @@
 package Sockets;
 
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+//import org.json.simple.JSONObject;
+//import org.json.simple.JSONValue;
 
 import java.net.Socket;
 import java.io.*;
@@ -58,10 +58,10 @@ public class Cliente {
             s.close();
 
             //Parse del json recibido desde el server server
-            Object obj=JSONValue.parse(mensajeRecibido);
-            JSONObject jsonObject = (JSONObject) obj;
-            Long vidas = (Long) jsonObject.get("vidas");
-            System.out.println(vidas);
+           // Object obj=JSONValue.parse(mensajeRecibido);
+          //  JSONObject jsonObject = (JSONObject) obj;
+           // Long vidas = (Long) jsonObject.get("vidas");
+          //  System.out.println(vidas);
 
         }
         catch(Exception e){
