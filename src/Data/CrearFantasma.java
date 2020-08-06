@@ -25,6 +25,6 @@ public class CrearFantasma extends Commandos{
      */
     @Override
     public void ejecutar() {
-        super.player.getGhosts().add(new Ghost(super.player.getNivel().getLevelNumber(), ghostColor, name));
+        super.player.getGhosts().add(new Ghost(super.player.getNivel().getLevelNumber(), ghostColor, name, super.player));
     }
 }

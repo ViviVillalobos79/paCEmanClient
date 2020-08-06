@@ -10,12 +10,16 @@ public class Ghost extends Sprite{
     private Integer levelNum;
     private Timer timer;
 
-    Integer direccionx;
-    Integer direcciony;
+    Integer direccion;
+    Integer mx;
+    Integer my;
 
-    private Random random;
+    Player player;
+
+    public Random random = new Random();
 
     private ImageIcon ghost_blue, ghost_orange, ghost_red, ghost_pink;
+
 
 
     /**
@@ -35,14 +39,16 @@ public class Ghost extends Sprite{
      * @param ghostColor color of the ghost
      * @param name name of ghost
      */
-    public Ghost(Integer levelNum, Integer ghostColor, String name){
+    public Ghost(Integer levelNum, Integer ghostColor, String name,Player player){
         super(2,1);
+        this.player = player;
+
         loadImages();
         this.ghostColor = ghostColor;
         this.levelNum = levelNum;
         this.name = name;
         setInitPosition();
-        //direccionx = random.nextInt(4);
+        direccion = random.nextInt(4);
 
     }
 
@@ -80,7 +86,63 @@ public class Ghost extends Sprite{
      * Is going to handle the movement
      */
     public void mover(){
-        
+        Integer[][] mat = Player.nivel.getLeveldat();
+        Integer fanx = getX();
+        Integer fany = getY();
+
+        if(direccion == 0){
+            System.out.println("aqui direccion " + direccion);
+            //move
+            if(mat[fany-1][fanx] == 0 || mat[fany-1][fanx] == 1) {
+                setY(fany - 1);
+            }
+            //walls
+            if(mat[fany-1][fanx] == 58 || mat[fany-1][fanx] == 2){
+                direccion = random.nextInt(4);
+            }
+
+        }
+
+        //down
+        if(direccion == 1){
+            System.out.println("aqui direccion " + direccion);
+            //move
+            if(mat[fany+1][fanx] == 0 || mat[fany+1][fanx] == 1) { setY(fany + 1);
+            }
+            //walls
+            if(mat[fany+1][fanx] == 58 || mat[fany+1][fanx] == 2){
+                direccion = random.nextInt(4);
+            }
+
+        }
+
+        //right
+        if(direccion == 2) {
+            System.out.println("aqui direccion " + direccion);
+            //move
+            if (mat[fany][fanx + 1] == 0 || mat[fany][fanx + 1] == 1) {
+                setX(fanx + 1);
+            }
+            //walls
+            if (mat[fany][fanx + 1] == 58 || mat[fany][fanx + 1] == 2) {
+                direccion = random.nextInt(4);
+            }
+
+        }
+
+        //left
+        if(direccion == 3){
+            System.out.println("aqui direccion " + direccion);
+            //move
+            if(mat[fany][fanx-1] == 0 || mat[fany][fanx-1] == 1) {
+                setX(fanx - 1);
+            }
+            //walls
+            if(mat[fany][fanx-1] == 58 || mat[fany][fanx-1] == 2){
+                direccion = random.nextInt(4);
+            }
+
+        }
     }
 
     /**

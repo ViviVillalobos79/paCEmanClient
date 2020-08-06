@@ -11,7 +11,7 @@ public class Player extends JPanel implements ActionListener{
 
     private static final Font smallFont = new Font("Helvetica", Font.BOLD, 20);
 
-    private static Nivel nivel;
+    static Nivel nivel;
     private static Pacman pacman;
 
     private static Integer levelNum;
@@ -115,7 +115,6 @@ public class Player extends JPanel implements ActionListener{
             matriz[fany][fanx].setBounds(10 + (fanx * 25), 10 + (fany * 25), 25, 25);
             matriz[fany][fanx].setVisible(true);
             this.add(matriz[fany][fanx],0);
-
         }
     }
 
@@ -254,8 +253,9 @@ public class Player extends JPanel implements ActionListener{
 
     public void moveGhosts(Integer[][] mat){
         for (Ghost ghost: ghosts) {
-            Integer fanx = ghost.getX();
-            Integer fany = ghost.getY();
+            ghost.mover();
+
+
 
         }
     }
