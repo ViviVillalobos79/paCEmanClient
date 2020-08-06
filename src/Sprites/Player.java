@@ -282,6 +282,7 @@ public class Player extends JPanel implements ActionListener{
             win();
             timer.stop();
         }
+        drawMaze();
     }
 
     /**

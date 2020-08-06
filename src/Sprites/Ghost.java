@@ -16,6 +16,8 @@ public class Ghost extends Sprite{
 
     Player player;
 
+
+
     public Random random = new Random();
 
     private ImageIcon ghost_blue, ghost_orange, ghost_red, ghost_pink;
