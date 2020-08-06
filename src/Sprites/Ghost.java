@@ -72,7 +72,7 @@ public class Ghost extends Sprite{
      * Is going to handle the movement
      */
     public void mover(){
-
+        
     }
 
     /**

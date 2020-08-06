@@ -31,6 +31,10 @@ public class Cliente {
     BufferedReader entrada;
 
     String mensajeRecibido;
+    /**
+     * variables del json
+     */
+    Object jsonObj;
 
 
     public Cliente() throws IOException {
@@ -45,7 +49,7 @@ public class Cliente {
             //Entrada de datos, lectura de mensajes del servidor
             entrada = new BufferedReader(new InputStreamReader(
                     s.getInputStream()));
-            String mensajeRecibido = entrada.readLine();
+            mensajeRecibido = entrada.readLine();
             System.out.println(mensajeRecibido);
 
             //Envio de respuesta al server
@@ -56,16 +60,22 @@ public class Cliente {
             pw.flush();
             pw.close();
             s.close();
+            //parse el mensajeRecibido
+            jsonParser();
 
-            //Parse del json recibido desde el server server
-            Object obj=JSONValue.parse(mensajeRecibido);
-            JSONObject jsonObject = (JSONObject) obj;
-            Long vidas = (Long) jsonObject.get("vidas");
-            System.out.println(vidas);
+
 
         }
         catch(Exception e){
             System.out.println(e);}
+    }
+
+    void jsonParser(){
+        //Parse del json recibido desde el server server
+        jsonObj=JSONValue.parse(mensajeRecibido);
+        JSONObject jsonObject = (JSONObject) jsonObj;
+        Long vidas = (Long) jsonObject.get("vidas");
+        System.out.println("Vidas = "+vidas);
     }
 
 
