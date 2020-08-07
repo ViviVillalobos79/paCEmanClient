@@ -43,6 +43,10 @@ public class Cliente extends Thread{
     Player player;
     Integer contador = 0;
 
+    /**
+     * constructor
+     * @param player
+     */
 
     public Cliente(Player player) {
         this.player = player;
@@ -59,7 +63,10 @@ public class Cliente extends Thread{
         }
 
     }
-
+    /**
+     * recibirMensaje
+     * abre la conexion para connectarse al servidor
+     */
     void recibirMensaje(){
         try
         {
@@ -116,6 +123,11 @@ public class Cliente extends Thread{
         }
     }
 
+    /**
+     * parseJson
+     * parsea el mensaje recibido por el servidor
+     * y ejecuta el comando selecionado por el jugador del server
+     */
     public void parseJson(){
         String fantasma = (String) jsonObject.get("fantasma");
         if(fantasma != null){
@@ -133,8 +145,6 @@ public class Cliente extends Thread{
 
         Long xPill = (Long) jsonObject.get("xPill");
         Long yPill = (Long) jsonObject.get("yPill");
-        //Commandos crearPill = new CrearPill(player,xPill,yPill);
-        //crearPill.ejecutar();
         if(xPill != null && yPill != null){
             Integer x = xPill.intValue();
             Integer y = yPill.intValue();
