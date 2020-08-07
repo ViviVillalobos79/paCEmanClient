@@ -92,17 +92,17 @@ public class Juego {
         menu.add(fondoMenu,0);
 
         botones[0].setText("JUGAR");
-        botones[1].setText("Crear");
         botones[2].setText("Observar");
-        botones[3].setText("Cargar");
         botones[4].setText("SALIR");
 
 
         for (int i = 0; i<botones.length; i++){
-            botones[i].setBounds(ventana.getWidth()/botones.length * i, ventana.getHeight()/2 +100, 100,40);
-            botones[i].setBackground(Color.WHITE);
-            botones[i].setVisible(true);
-            menu.add(botones[i], 0);
+            if(i== 0 || i == 2 || i==4) {
+                botones[i].setBounds(ventana.getWidth() / botones.length * i, ventana.getHeight() / 2 + 100, 100, 40);
+                botones[i].setBackground(Color.WHITE);
+                botones[i].setVisible(true);
+                menu.add(botones[i], 0);
+            }
         }
 
         ventana.add(menu);

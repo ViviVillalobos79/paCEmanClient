@@ -54,4 +54,8 @@ public class Pills {
     public ArrayList<Pill> getPills() {
         return pills;
     }
+
+    public Integer getPillTime() {
+        return pillTime;
+    }
 }

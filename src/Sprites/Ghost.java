@@ -24,7 +24,7 @@ public class Ghost extends Sprite{
 
     public Random random = new Random();
 
-    private ImageIcon ghost_blue, ghost_orange, ghost_red, ghost_pink;
+    private ImageIcon ghost_blue, ghost_orange, ghost_red, ghost_pink, ghost_die;
 
 
 
@@ -171,6 +171,7 @@ public class Ghost extends Sprite{
         ghost_orange = new ImageIcon("src\\images\\ghost_orange.png");
         ghost_pink = new ImageIcon("src\\images\\ghost_pink.png");
         ghost_red = new ImageIcon("src\\images\\ghost_red.png");
+        ghost_die = new ImageIcon("src\\images\\dieghost.png");
 
     }
 
@@ -179,13 +180,16 @@ public class Ghost extends Sprite{
      * @return ImageIcon in regards of the ghost name
      */
     public ImageIcon getImageGhost(){
-        if(name.equals("Clyde")){
+        if(comible){
+            return ghost_die;
+        }
+        else if(name.equals("Clyde")){
             return ghost_orange;
         }
-        if(name.equals("Blinky")){
+        else if(name.equals("Blinky")){
             return ghost_red;
         }
-        if(name.equals("Pinky")){
+        else if(name.equals("Pinky")){
             return ghost_pink;
         }
         return ghost_blue;
@@ -193,5 +197,9 @@ public class Ghost extends Sprite{
 
     public void setComible(Boolean comible) {
         this.comible = comible;
+    }
+
+    public Boolean getComible() {
+        return comible;
     }
 }
