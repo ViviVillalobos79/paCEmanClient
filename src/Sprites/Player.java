@@ -18,6 +18,8 @@ public class Player extends JPanel implements ActionListener{
 
     private static JLabel[][] matriz;
 
+   public static Integer[][] matAux;
+
     private final ArrayList<Ghost> ghosts = new ArrayList<>();
 
     private static String jugador;
@@ -38,6 +40,10 @@ public class Player extends JPanel implements ActionListener{
         configurePanel();
         mover();
 
+    }
+
+    public static void setTimer(Timer timer) {
+        Player.timer = timer;
     }
 
     /**
@@ -61,6 +67,7 @@ public class Player extends JPanel implements ActionListener{
         pacman.setIzquierda(0);
 
         matriz = new JLabel[31][26];
+        matAux = nivel.getLeveldat();
 
         for (Integer i = 0; i < 31; i++) {
             for (Integer j = 0; j < 26; j++) {
@@ -215,6 +222,7 @@ public class Player extends JPanel implements ActionListener{
             nivel.setAInfo(px,py,0);
             pacman.setY(py-1);
             nivel.setAInfo(px,py,0);
+            matAux = mat;
             drawMaze();
         }
         if(pacman.getAbajo() == 1 && (mat[py+1][px] == 1 || mat[py+1][px] == 0)){
@@ -225,6 +233,7 @@ public class Player extends JPanel implements ActionListener{
             nivel.setAInfo(px,py,0);
             pacman.setY(py+1);
             nivel.setAInfo(px,py,0);
+            matAux = mat;
             drawMaze();
         }
         if(pacman.getDerecha() == 1 && (mat[py][px+1] == 1 || mat[py][px+1] == 0)){
@@ -236,7 +245,7 @@ public class Player extends JPanel implements ActionListener{
             nivel.setAInfo(px,py,0);
             pacman.setX(px+1);
             nivel.setAInfo(px,py,0);
-
+            matAux = mat;
             drawMaze();
         }
         if(pacman.getIzquierda() == 1 && (mat[py][px-1] == 1 || mat[py][px-1] == 0)){
@@ -247,6 +256,7 @@ public class Player extends JPanel implements ActionListener{
             nivel.setAInfo(px,py,0);
             pacman.setX(px-1);
             nivel.setAInfo(px,py,0);
+            matAux = mat;
             drawMaze();
         }
     }

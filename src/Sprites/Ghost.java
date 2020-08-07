@@ -96,23 +96,25 @@ public class Ghost extends Sprite{
             System.out.println("aqui direccion " + direccion);
             //move
             if(mat[fany-1][fanx] == 0 || mat[fany-1][fanx] == 1) {
+                Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setY(fany - 1);
             }
             //walls
-            if(mat[fany-1][fanx] == 58 || mat[fany-1][fanx] == 2){
+            else if(mat[fany-1][fanx] == 58 || mat[fany-1][fanx] == 2){
                 direccion = random.nextInt(4);
             }
-
         }
 
         //down
         if(direccion == 1){
             System.out.println("aqui direccion " + direccion);
             //move
-            if(mat[fany+1][fanx] == 0 || mat[fany+1][fanx] == 1) { setY(fany + 1);
+            if(mat[fany+1][fanx] == 0 || mat[fany+1][fanx] == 1) {
+                Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
+                setY(fany + 1);
             }
             //walls
-            if(mat[fany+1][fanx] == 58 || mat[fany+1][fanx] == 2){
+            else if(mat[fany+1][fanx] == 58 || mat[fany+1][fanx] == 2){
                 direccion = random.nextInt(4);
             }
 
@@ -123,10 +125,11 @@ public class Ghost extends Sprite{
             System.out.println("aqui direccion " + direccion);
             //move
             if (mat[fany][fanx + 1] == 0 || mat[fany][fanx + 1] == 1) {
+                Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setX(fanx + 1);
             }
             //walls
-            if (mat[fany][fanx + 1] == 58 || mat[fany][fanx + 1] == 2) {
+            else if (mat[fany][fanx + 1] == 58 || mat[fany][fanx + 1] == 2) {
                 direccion = random.nextInt(4);
             }
 
@@ -137,10 +140,11 @@ public class Ghost extends Sprite{
             System.out.println("aqui direccion " + direccion);
             //move
             if(mat[fany][fanx-1] == 0 || mat[fany][fanx-1] == 1) {
+                Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setX(fanx - 1);
             }
             //walls
-            if(mat[fany][fanx-1] == 58 || mat[fany][fanx-1] == 2){
+            else if(mat[fany][fanx-1] == 58 || mat[fany][fanx-1] == 2){
                 direccion = random.nextInt(4);
             }
 
