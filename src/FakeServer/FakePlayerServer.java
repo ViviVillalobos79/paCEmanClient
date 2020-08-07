@@ -2,6 +2,7 @@ package FakeServer;
 
 import Data.Commandos;
 import Data.CrearFantasma;
+import Data.CrearFruta;
 import Sprites.Player;
 
 import javax.swing.*;
@@ -9,18 +10,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class FakePlayerServer extends JFrame{
+public class FakePlayerServer extends JFrame {
     private JPanel panel1;
     private JTabbedPane tabbedPane1;
     private JButton ejecutarButton;
     private JComboBox nombreFantasma;
     private JLabel jlabel1;
+    private JButton crearFrutaButton;
+    private JSpinner fruitPunt;
+
 
     private Player player;
 
     public FakePlayerServer(Player player) {
         this.setSize(300,300);
         this.player = player;
+
         initVariables();
 
         ejecutarButton.addActionListener(new ActionListener() {
@@ -31,13 +36,20 @@ public class FakePlayerServer extends JFrame{
 
             }
         });
+
+        crearFrutaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Commandos crearFruta = new CrearFruta(player,getFruitPoints());
+                crearFruta.ejecutar();
+            }
+        });
     }
 
     public void initVariables(){
         setContentPane(panel1);
-
+        fruitPunt.setModel(new SpinnerNumberModel(10000,100,null,100));
     }
-
 
     private String getGhostName() {
         String name = Objects.requireNonNull(nombreFantasma.getSelectedItem()).toString();
@@ -59,7 +71,12 @@ public class FakePlayerServer extends JFrame{
         }
     }
 
+    private Integer getFruitPoints(){
+        return (Integer)fruitPunt.getValue();
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
 }

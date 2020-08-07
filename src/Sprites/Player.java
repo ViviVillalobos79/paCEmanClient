@@ -1,6 +1,8 @@
 package Sprites;
 
 import Data.Constants;
+import Data.Observerdata;
+import GUI.ObserverWindow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,10 +24,14 @@ public class Player extends JPanel implements ActionListener{
 
     private final ArrayList<Ghost> ghosts = new ArrayList<>();
 
-    private static String jugador;
-    private static Integer puntos;
-    private static JLabel nombre;
-    private static JLabel record;
+    private Manage fruits = new Manage();
+
+    public String jugador;
+    public Integer puntos;
+    public JLabel nombre;
+    public JLabel record;
+
+    ObserverWindow observerWindow;
 
     private static Timer timer;
 
@@ -39,7 +45,6 @@ public class Player extends JPanel implements ActionListener{
         drawScore();
         configurePanel();
         mover();
-
     }
 
     public static void setTimer(Timer timer) {
@@ -68,35 +73,7 @@ public class Player extends JPanel implements ActionListener{
 
         matriz = new JLabel[31][26];
 
-        matAux = new Integer[][]{
-                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}, //1
-                {2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2}, //2
-                {2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2}, //3
-                {2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2}, //4
-                {2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2}, //5
-                {2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2}, //6
-                {2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2}, //7
-                {2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2}, //8
-                {2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2}, //9
-                {2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2}, //10
-                {2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2}, //11
-                {2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2}, //12
-                {2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2}, //13
-                {2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2}, //16
-                {2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2}, //19
-                {2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2}, //20
-                {2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2}, //21
-                {2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2}, //22
-                {2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2}, //23
-                {2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2}, //24
-                {2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2}, //25
-                {2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2}, //26
-                {2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2}, //27
-                {2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2}, //28
-                {2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2}, //29
-                {2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2}, //30
-                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2}  //31
-        };
+        matAux = Constants.mat1;
         for (Integer i = 0; i < 31; i++) {
             for (Integer j = 0; j < 26; j++) {
                 matriz[i][j] = new JLabel();
@@ -104,7 +81,9 @@ public class Player extends JPanel implements ActionListener{
         }
         jugador = "Vivi";
         puntos = 0;
-
+        //observerWindow = new ObserverWindow();
+        //observerWindow.setVisible(true);
+        //updateObserver();
     }
 
     /**
@@ -122,7 +101,10 @@ public class Player extends JPanel implements ActionListener{
             }
         }
         drawPacMan();
+        drawFruits();
         drawGhost();
+
+        //updateObserver();
     }
 
     /**
@@ -155,6 +137,21 @@ public class Player extends JPanel implements ActionListener{
             this.add(matriz[fany][fanx],0);
         }
     }
+
+    public void drawFruits(){
+        ArrayList<Sprite> sprites = fruits.getSprites();
+        for (Sprite sprite : sprites) {
+            Integer fx = sprite.getX();
+            Integer fy = sprite.getY();
+
+            nivel.setAInfo(fx, fy, 50);
+            matriz[fy][fx].setIcon(sprite.getImage());
+            matriz[fy][fx].setBounds(10 + (fx * 25), 10 + (fy * 25), 25, 25);
+            matriz[fy][fx].setVisible(true);
+            this.add(matriz[fy][fx], 0);
+        }
+    }
+
 
     /**
      * Draw player's name and score
@@ -245,30 +242,48 @@ public class Player extends JPanel implements ActionListener{
     public void movePacman(Integer[][] mat){
         Integer py = pacman.getY();
         Integer px = pacman.getX();
-        if(pacman.getArriba() == 1 && (mat[py-1][px] == 1 || mat[py-1][px] == 0)){
+        if(pacman.getArriba() == 1 && (mat[py-1][px] == 1 || mat[py-1][px] == 0 || mat[py-1][px] == 50)){
             if(mat[py-1][px] == 1 ){
                 puntos = puntos + 5;
                 record.setText("Puntos: "+ puntos);
+            }
+            else if(mat[py-1][px] == 50){
+                Fruit fruit = (Fruit) fruits.get(px,py-1);
+                puntos = puntos + fruit.getPoints();
+                record.setText("Puntos: "+ puntos);
+                fruits.remove(px,py-1);
             }
             nivel.setAInfo(px,py,0);
             matAux[py][px] = 0;
             pacman.setY(py-1);
             drawMaze();
         }
-        if(pacman.getAbajo() == 1 && (mat[py+1][px] == 1 || mat[py+1][px] == 0)){
+        if(pacman.getAbajo() == 1 && (mat[py+1][px] == 1 || mat[py+1][px] == 0|| mat[py+1][px] == 50)){
             if(mat[py+1][px] == 1 ){
                 puntos = puntos+ 5;
                 record.setText("Puntos: "+ puntos);
+            }
+            else if(mat[py+1][px] == 50){
+                Fruit fruit = (Fruit) fruits.get(px,py+1);
+                puntos = puntos + fruit.getPoints();
+                record.setText("Puntos: "+ puntos);
+                fruits.remove(px,py+1);
             }
             nivel.setAInfo(px,py,0);
             matAux[py][px] = 0;
             pacman.setY(py+1);
             drawMaze();
         }
-        if(pacman.getDerecha() == 1 && (mat[py][px+1] == 1 || mat[py][px+1] == 0)){
+        if(pacman.getDerecha() == 1 && (mat[py][px+1] == 1 || mat[py][px+1] == 0|| mat[py][px+1] == 50)){
             if(mat[py][px+1] == 1 ){
                 puntos = puntos+ 5;
                 record.setText("Puntos: "+ puntos);
+            }
+            else if(mat[py][px+1] == 50){
+                Fruit fruit = (Fruit) fruits.get(px+1,py);
+                puntos = puntos + fruit.getPoints();
+                record.setText("Puntos: "+ puntos);
+                fruits.remove(px+1,py);
             }
 
             nivel.setAInfo(px,py,0);
@@ -276,10 +291,16 @@ public class Player extends JPanel implements ActionListener{
             pacman.setX(px+1);
             drawMaze();
         }
-        if(pacman.getIzquierda() == 1 && (mat[py][px-1] == 1 || mat[py][px-1] == 0)){
+        if(pacman.getIzquierda() == 1 && (mat[py][px-1] == 1 || mat[py][px-1] == 0|| mat[py][px-1] == 50)){
             if(mat[py][px-1] == 1 ){
                 puntos = puntos+ 5;
                 record.setText("Puntos: "+ puntos);
+            }
+            else if(mat[py][px-1] == 50){
+                Fruit fruit = (Fruit) fruits.get(px-1,py);
+                puntos = puntos + fruit.getPoints();
+                record.setText("Puntos: "+ puntos);
+                fruits.remove(px-1,py);
             }
             nivel.setAInfo(px,py,0);
             matAux[py][px] = 0;
@@ -315,6 +336,12 @@ public class Player extends JPanel implements ActionListener{
             win();
             timer.stop();
         }
+        if(mat[pacman.getY()][pacman.getX()+1] == 58 ||mat[pacman.getY()][pacman.getX()-1] == 58||
+                mat[pacman.getY()-1][pacman.getX()] == 58||mat[pacman.getY()+1][pacman.getX()] == 58 ){
+
+            die();
+            timer.stop();
+        }
         drawMaze();
     }
 
@@ -323,6 +350,10 @@ public class Player extends JPanel implements ActionListener{
      */
     private void win() {
         JOptionPane.showMessageDialog(this, "GANASTE!!!!");
+        this.setVisible(false);
+    }
+    private void die() {
+        JOptionPane.showMessageDialog(this, "PERDISTE!!!!");
         this.setVisible(false);
     }
 
@@ -336,5 +367,30 @@ public class Player extends JPanel implements ActionListener{
 
     public ArrayList<Ghost> getGhosts() {
         return ghosts;
+    }
+
+    public void updateObserver(){
+        Observerdata observerdata = new Observerdata();
+
+        observerdata.nivel = this.getNivel();
+        observerdata.level = nivel.getLevelNumber();
+        observerdata.pacman = this.getPacman();
+        observerdata.ghosts = this.ghosts;
+        observerdata.jugador = this.jugador;
+        observerdata.puntos = this.puntos;
+        observerdata.nombre = this.nombre;
+        observerdata.record = this.record;
+        observerdata.matriz = this.matriz;
+
+        observerWindow.observador.update(observerdata);
+
+    }
+
+    public Manage getFruits() {
+        return fruits;
+    }
+
+    public void setFruits(Manage fruits) {
+        this.fruits = fruits;
     }
 }

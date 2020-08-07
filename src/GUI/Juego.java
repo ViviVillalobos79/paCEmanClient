@@ -93,7 +93,7 @@ public class Juego {
 
         botones[0].setText("JUGAR");
         botones[1].setText("Crear");
-        botones[2].setText("Records");
+        botones[2].setText("Observar");
         botones[3].setText("Cargar");
         botones[4].setText("SALIR");
 
@@ -133,9 +133,12 @@ public class Juego {
             }
         });
 
-        //Record
+        //Observar
         botones[2].addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
+                ventana.setVisible(false);
+                ObserverWindow observerWindow = new ObserverWindow();
+                observerWindow.setVisible(true);
             }
         });
 
