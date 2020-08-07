@@ -41,11 +41,6 @@ public class PlayerWindow extends JFrame {
         FakePlayerServer fakePlayerServer = new FakePlayerServer(player);
         fakePlayerServer.setVisible(true);
 
-
-
-
-
-
         this.add(player);
     }
 }

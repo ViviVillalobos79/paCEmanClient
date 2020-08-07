@@ -10,6 +10,8 @@ public class Ghost extends Sprite{
     private Integer levelNum;
     private Timer timer;
 
+    public Integer speed;
+
     Integer direccion;
     Integer mx;
     Integer my;
@@ -93,9 +95,8 @@ public class Ghost extends Sprite{
         Integer fany = getY();
 
         if(direccion == 0){
-            System.out.println("aqui direccion " + direccion);
             //move
-            if(mat[fany-1][fanx] == 0 || mat[fany-1][fanx] == 1) {
+            if(mat[fany-1][fanx] == 0 || mat[fany-1][fanx] == 1 || mat[fany-1][fanx] == 50) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setY(fany - 1);
             }
@@ -107,14 +108,13 @@ public class Ghost extends Sprite{
 
         //down
         if(direccion == 1){
-            System.out.println("aqui direccion " + direccion);
             //move
-            if(mat[fany+1][fanx] == 0 || mat[fany+1][fanx] == 1) {
+            if(mat[fany+1][fanx] == 0 || mat[fany+1][fanx] == 1 || mat[fany+1][fanx] == 50) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setY(fany + 1);
             }
             //walls
-            else if(mat[fany+1][fanx] == 58 || mat[fany+1][fanx] == 2){
+            else if(mat[fany+1][fanx] == 58 || mat[fany+1][fanx] == 2 ){
                 direccion = random.nextInt(4);
             }
 
@@ -122,9 +122,8 @@ public class Ghost extends Sprite{
 
         //right
         if(direccion == 2) {
-            System.out.println("aqui direccion " + direccion);
             //move
-            if (mat[fany][fanx + 1] == 0 || mat[fany][fanx + 1] == 1) {
+            if (mat[fany][fanx + 1] == 0 || mat[fany][fanx + 1] == 1 || mat[fany][fanx + 1] == 50) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setX(fanx + 1);
             }
@@ -137,9 +136,8 @@ public class Ghost extends Sprite{
 
         //left
         if(direccion == 3){
-            System.out.println("aqui direccion " + direccion);
             //move
-            if(mat[fany][fanx-1] == 0 || mat[fany][fanx-1] == 1) {
+            if(mat[fany][fanx-1] == 0 || mat[fany][fanx-1] == 1 || mat[fany][fanx-1] == 50) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setX(fanx - 1);
             }
@@ -147,8 +145,13 @@ public class Ghost extends Sprite{
             else if(mat[fany][fanx-1] == 58 || mat[fany][fanx-1] == 2){
                 direccion = random.nextInt(4);
             }
-
         }
+
+
+    }
+
+    public void mover2(){
+
     }
 
     /**
