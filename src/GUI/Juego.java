@@ -47,7 +47,7 @@ public class Juego {
 
         fondoPresentacion = new JLabel();
         fondoPresentacion.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-        imagenFondoPres = new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\FondoPresentacion.jpg");
+        imagenFondoPres = new ImageIcon("src\\images\\FondoPresentacion.jpg");
         imagenFondoPres = new ImageIcon(imagenFondoPres.getImage().getScaledInstance(ventana.getWidth(),
                 ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoPresentacion.setIcon(imagenFondoPres);
@@ -84,7 +84,7 @@ public class Juego {
 
         fondoMenu = new JLabel();
         fondoMenu.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-        imagenFondoMenu = new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\menu.gif");
+        imagenFondoMenu = new ImageIcon("src\\images\\menu.gif");
         imagenFondoMenu = new ImageIcon(imagenFondoMenu.getImage().getScaledInstance(ventana.getWidth(),
                 ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoMenu.setIcon(imagenFondoMenu);
@@ -123,9 +123,6 @@ public class Juego {
                 ventana.setVisible(false);
                 PlayerWindow playerWindow = new PlayerWindow();
                 playerWindow.setVisible(true);
-                //Tablero tablero = new Tablero();
-                //tablero.setJugador(jugador);
-                //tablero.jugar(ventana, menu);
 
             }
         });
