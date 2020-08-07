@@ -140,6 +140,10 @@ public class Player extends JPanel implements ActionListener{
         this.add(matriz[pacY][pacX], 0);
     }
 
+
+    /**
+     * Draw ghost according to the position
+     */
     public void drawGhost(){
         for (Ghost ghost: ghosts){
             Integer fanx = ghost.getX();
