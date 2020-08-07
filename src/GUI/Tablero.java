@@ -19,10 +19,10 @@ public class Tablero {
 
     private static  JLabel _pacMan;
     private final ImageIcon[] _pacman = {
-            new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\PACMAN-SPRITE-1.png"),
-            new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\PACMAN-SPRITE-2.png"),
-            new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\PACMAN-SPRITE-3.png"),
-            new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\PACMAN-SPRITE-4.png"),
+            new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\PACMAN-SPRITE-1.png"),
+            new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\PACMAN-SPRITE-2.png"),
+            new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\PACMAN-SPRITE-3.png"),
+            new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\PACMAN-SPRITE-4.png"),
     };
 
     private Image ghost;
@@ -238,20 +238,20 @@ public class Tablero {
 
     private void loadImages() {
 
-        ghost = new ImageIcon(getClass().getResource("../images/ghost.gif")).getImage();
-        pacman1 = new ImageIcon(getClass().getResource("../images/pacman.gif")).getImage();
-        pacman2up = new ImageIcon(getClass().getResource("../images/up1.gif")).getImage();
-        pacman3up = new ImageIcon(getClass().getResource("../images/up2.gif")).getImage();
-        pacman4up = new ImageIcon(getClass().getResource("../images/up3.gif")).getImage();
-        pacman2down = new ImageIcon(getClass().getResource("../images/down1.gif")).getImage();
-        pacman3down = new ImageIcon(getClass().getResource("../images/down2.gif")).getImage();
-        pacman4down = new ImageIcon(getClass().getResource("../images/down3.gif")).getImage();
-        pacman2left = new ImageIcon(getClass().getResource("../images/left1.gif")).getImage();
-        pacman3left = new ImageIcon(getClass().getResource("../images/left2.gif")).getImage();
-        pacman4left = new ImageIcon(getClass().getResource("../images/left3.gif")).getImage();
-        pacman2right = new ImageIcon(getClass().getResource("../images/right1.gif")).getImage();
-        pacman3right = new ImageIcon(getClass().getResource("../images/right2.gif")).getImage();
-        pacman4right = new ImageIcon(getClass().getResource("../images/right3.gif")).getImage();
+        ghost = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\ghost.gif")).getImage();
+        pacman1 = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\pacman.gif")).getImage();
+        pacman2up = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\up1.gif")).getImage();
+        pacman3up = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\up2.gif")).getImage();
+        pacman4up = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\up3.gif")).getImage();
+        pacman2down = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\down1.gif")).getImage();
+        pacman3down = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\down2.gif")).getImage();
+        pacman4down = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\down3.gif")).getImage();
+        pacman2left = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\left1.gif")).getImage();
+        pacman3left = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\left2.gif")).getImage();
+        pacman4left = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\left3.gif")).getImage();
+        pacman2right = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\right1.gif")).getImage();
+        pacman3right = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\right2.gif")).getImage();
+        pacman4right = new ImageIcon(getClass().getResource("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\right3.gif")).getImage();
     }
 
     public String getJugador() {
@@ -266,7 +266,7 @@ public class Tablero {
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
                 matriz[i][j].setIcon(new ImageIcon(
-                        "C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\"+mat[i][j]+".png"));
+                        "\\src\\images\\"+mat[i][j]+".png"));
 
                 matriz[i][j].setBounds(10+(j*25),10+(i*25),25,25);
                 matriz[i][j].setVisible(true);

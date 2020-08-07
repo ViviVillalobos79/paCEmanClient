@@ -84,7 +84,7 @@ public class Juego {
 
         fondoMenu = new JLabel();
         fondoMenu.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-        imagenFondoMenu = new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\menu.gif");
+        imagenFondoMenu = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\menu.gif");
         imagenFondoMenu = new ImageIcon(imagenFondoMenu.getImage().getScaledInstance(ventana.getWidth(),
                 ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoMenu.setIcon(imagenFondoMenu);

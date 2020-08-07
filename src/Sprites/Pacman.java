@@ -40,19 +40,19 @@ public class Pacman extends Sprite{
      * Loads Images for the animation
      */
     private void loadImages() {
-        pacman1 = new ImageIcon("src\\images\\pacman.png");
-        pacman2up = new ImageIcon("src\\images\\up1.gif");
-        pacman3up = new ImageIcon("src\\images\\up2.gif");
-        pacman4up = new ImageIcon("src\\images\\up3.gif");
-        pacman2down = new ImageIcon("src\\images\\down1.gif");
-        pacman3down = new ImageIcon("src\\images\\down2.gif");
-        pacman4down = new ImageIcon("src\\images\\down3.gif");
-        pacman2left = new ImageIcon("src\\images\\left1.gif");
-        pacman3left = new ImageIcon("src\\images\\left2.gif");
-        pacman4left = new ImageIcon("src\\images\\left3.gif");
-        pacman2right = new ImageIcon("src\\images\\right1.gif");
-        pacman3right = new ImageIcon("src\\images\\right2.gif");
-        pacman4right = new ImageIcon("src\\images\\right3.gif");
+        pacman1 = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\pacman.png");
+        pacman2up = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\up1.gif");
+        pacman3up = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\up2.gif");
+        pacman4up = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\up3.gif");
+        pacman2down = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\down1.gif");
+        pacman3down = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\down2.gif");
+        pacman4down = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\down3.gif");
+        pacman2left = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\left1.gif");
+        pacman3left = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\left2.gif");
+        pacman4left = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\left3.gif");
+        pacman2right = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\right1.gif");
+        pacman3right = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\right2.gif");
+        pacman4right = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\right3.gif");
     }
 
     /**
