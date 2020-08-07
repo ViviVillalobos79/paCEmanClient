@@ -11,7 +11,7 @@ public class Player extends JPanel implements ActionListener{
 
     private static final Font smallFont = new Font("Helvetica", Font.BOLD, 20);
 
-    static Nivel nivel;
+    public static Nivel nivel;
     private static Pacman pacman;
 
     private static Integer levelNum;
@@ -139,7 +139,6 @@ public class Player extends JPanel implements ActionListener{
         matriz[pacY][pacX].setVisible(true);
         this.add(matriz[pacY][pacX], 0);
     }
-
 
     /**
      * Draw ghost according to the position
