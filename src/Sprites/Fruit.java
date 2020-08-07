@@ -35,7 +35,7 @@ public class Fruit extends Sprite {
      * Loads the fruit image
      */
     private void loadimage() {
-        image = new ImageIcon("src\\images\\fruit.png");
+        image = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\fruit.png");
     }
 
     public Integer getPoints() {

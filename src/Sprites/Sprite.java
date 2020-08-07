@@ -27,7 +27,7 @@ public class Sprite {
      */
     private void setearImg() {
         this.image = new ImageIcon(
-                "src\\images\\" + imagename + ".png");
+                "C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images" + imagename + ".png");
     }
 
     public Integer getX() {

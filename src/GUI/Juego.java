@@ -47,7 +47,7 @@ public class Juego {
 
         fondoPresentacion = new JLabel();
         fondoPresentacion.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-        imagenFondoPres = new ImageIcon("src\\images\\FondoPresentacion.jpg");
+        imagenFondoPres = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\FondoPresentacion.jpg");
         imagenFondoPres = new ImageIcon(imagenFondoPres.getImage().getScaledInstance(ventana.getWidth(),
                 ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoPresentacion.setIcon(imagenFondoPres);

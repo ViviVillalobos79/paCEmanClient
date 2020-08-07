@@ -2,6 +2,7 @@ package GUI;
 
 import Data.Constants;
 import FakeServer.FakePlayerServer;
+import Sockets.Cliente;
 import Sprites.Player;
 
 import javax.swing.*;
@@ -37,7 +38,8 @@ public class PlayerWindow extends JFrame {
         this.setResizable(true);
 
         Player player = new Player();
-
+        Cliente c = new Cliente(player);
+        c.start();
         FakePlayerServer fakePlayerServer = new FakePlayerServer(player);
         fakePlayerServer.setVisible(true);
 

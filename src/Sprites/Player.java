@@ -131,7 +131,7 @@ public class Player extends JPanel implements ActionListener{
             for (Integer j = 0; j < mat[i].length; j++) {
                 if(mat[i][j] == 1 || mat[i][j] == 0 || mat[i][j] == 2) {
                     matriz[i][j].setIcon(new ImageIcon(
-                            "src\\images\\" + mat[i][j] + ".png"));
+                            "C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\" + mat[i][j] + ".png"));
                     matriz[i][j].setBounds(10 + (j * 25), 10 + (i * 25), 25, 25);
                     matriz[i][j].setVisible(true);
                     this.add(matriz[i][j], 0);
@@ -206,7 +206,7 @@ public class Player extends JPanel implements ActionListener{
 
             nivel.setAInfo(px, py, 5);
             matriz[py][px].setIcon(new ImageIcon(
-                    "src\\images\\50.png"));
+                    "C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\50.png"));
             matriz[py][px].setBounds(10 + (px * 25), 10 + (py * 25), 25, 25);
             matriz[py][px].setVisible(true);
             this.add(matriz[py][px], 0);

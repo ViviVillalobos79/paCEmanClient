@@ -48,7 +48,7 @@ public class PanelMenu extends JFrame{
 
         fondoMenu = new JLabel();
         fondoMenu.setBounds(0, 0, this.getWidth(), this.getHeight());
-        imagenFondoMenu = new ImageIcon("C:\\Users\\User\\IdeaProjects\\untitled2\\src\\images\\menu.gif");
+        imagenFondoMenu = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\menu.gif");
         imagenFondoMenu = new ImageIcon(imagenFondoMenu.getImage().getScaledInstance(this.getWidth(),
                 this.getHeight(), Image.SCALE_DEFAULT));
         fondoMenu.setIcon(imagenFondoMenu);

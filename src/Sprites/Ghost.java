@@ -185,11 +185,11 @@ public class Ghost extends Sprite{
      * Loads images for each ghost
      */
     private void loadImages() {
-        ghost_blue = new ImageIcon("src\\images\\ghost_blue.png");
-        ghost_orange = new ImageIcon("src\\images\\ghost_orange.png");
-        ghost_pink = new ImageIcon("src\\images\\ghost_pink.png");
-        ghost_red = new ImageIcon("src\\images\\ghost_red.png");
-        ghost_die = new ImageIcon("src\\images\\dieghost.png");
+        ghost_blue = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\ghost_blue.png");
+        ghost_orange = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\ghost_orange.png");
+        ghost_pink = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\ghost_pink.png");
+        ghost_red = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\ghost_red.png");
+        ghost_die = new ImageIcon("C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\dieghost.png");
 
     }
 

@@ -79,7 +79,7 @@ public class Observador extends JPanel {
         for (Integer i = 0; i < mat.length; i++) {
             for (Integer j = 0; j < mat[i].length; j++) {
                 matriz[i][j].setIcon(new ImageIcon(
-                        "src\\images\\" + mat[i][j] + ".png"));
+                        "C:\\Users\\Dxnium\\OneDrive - Estudiantes ITCR\\TEC\\Lenguajes\\Tarea Corta 3\\paCEmanClient\\paCEmanClient\\src\\images\\" + mat[i][j] + ".png"));
                 matriz[i][j].setBounds(10 + (j * 25), 10 + (i * 25), 25, 25);
                 matriz[i][j].setVisible(true);
                 this.add(matriz[i][j], 0);
