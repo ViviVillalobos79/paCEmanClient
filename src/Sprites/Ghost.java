@@ -10,6 +10,8 @@ public class Ghost extends Sprite{
     private Integer levelNum;
     private Timer timer;
 
+    private Boolean comible = false;
+
     public Integer speed;
 
     Integer direccion;
@@ -78,6 +80,13 @@ public class Ghost extends Sprite{
         this.setY(14);
     }
 
+    /**
+     * Resets to the first pos
+     */
+    public void resetPos(){
+        setInitPosition();
+    }
+
     public String getName() {
         return name;
     }
@@ -96,7 +105,7 @@ public class Ghost extends Sprite{
 
         if(direccion == 0){
             //move
-            if(mat[fany-1][fanx] == 0 || mat[fany-1][fanx] == 1 || mat[fany-1][fanx] == 50) {
+            if(mat[fany-1][fanx] == 0 || mat[fany-1][fanx] == 1 || mat[fany-1][fanx] == 50 || mat[fany-1][fanx] == 5) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setY(fany - 1);
             }
@@ -109,7 +118,7 @@ public class Ghost extends Sprite{
         //down
         if(direccion == 1){
             //move
-            if(mat[fany+1][fanx] == 0 || mat[fany+1][fanx] == 1 || mat[fany+1][fanx] == 50) {
+            if(mat[fany+1][fanx] == 0 || mat[fany+1][fanx] == 1 || mat[fany+1][fanx] == 50|| mat[fany+1][fanx] == 5) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setY(fany + 1);
             }
@@ -123,7 +132,7 @@ public class Ghost extends Sprite{
         //right
         if(direccion == 2) {
             //move
-            if (mat[fany][fanx + 1] == 0 || mat[fany][fanx + 1] == 1 || mat[fany][fanx + 1] == 50) {
+            if (mat[fany][fanx+1] == 0 || mat[fany][fanx+1] == 1 || mat[fany][fanx+1] == 50 || mat[fany][fanx+1] == 5) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setX(fanx + 1);
             }
@@ -137,7 +146,7 @@ public class Ghost extends Sprite{
         //left
         if(direccion == 3){
             //move
-            if(mat[fany][fanx-1] == 0 || mat[fany][fanx-1] == 1 || mat[fany][fanx-1] == 50) {
+            if(mat[fany][fanx-1] == 0 || mat[fany][fanx-1] == 1 || mat[fany][fanx-1] == 50 || mat[fany][fanx-1] == 5) {
                 Player.nivel.setAInfo(fanx,fany,Player.matAux[fany][fanx]);
                 setX(fanx - 1);
             }
@@ -182,4 +191,7 @@ public class Ghost extends Sprite{
         return ghost_blue;
     }
 
+    public void setComible(Boolean comible) {
+        this.comible = comible;
+    }
 }
