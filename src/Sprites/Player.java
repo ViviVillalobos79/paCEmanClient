@@ -25,14 +25,11 @@ public class Player extends JPanel implements ActionListener{
     private final ArrayList<Ghost> ghosts = new ArrayList<>();
 
     private Manage fruits = new Manage();
-    private Pills pills = new Pills();
 
     public String jugador;
     public Integer puntos;
-    public Integer pastTiempo;
     public JLabel nombre;
     public JLabel record;
-    public JLabel pasTiempo;
 
     ObserverWindow observerWindow;
 
@@ -84,7 +81,6 @@ public class Player extends JPanel implements ActionListener{
         }
         jugador = "Vivi";
         puntos = 0;
-        pastTiempo = 0;
         //observerWindow = new ObserverWindow();
         //observerWindow.setVisible(true);
         //updateObserver();
@@ -97,18 +93,15 @@ public class Player extends JPanel implements ActionListener{
         Integer[][] mat = nivel.getLeveldat();
         for (Integer i = 0; i < mat.length; i++) {
             for (Integer j = 0; j < mat[i].length; j++) {
-                if(mat[i][j] == 1 || mat[i][j] == 0 || mat[i][j] == 2) {
-                    matriz[i][j].setIcon(new ImageIcon(
-                            "src\\images\\" + mat[i][j] + ".png"));
-                    matriz[i][j].setBounds(10 + (j * 25), 10 + (i * 25), 25, 25);
-                    matriz[i][j].setVisible(true);
-                    this.add(matriz[i][j], 0);
-                }
+                matriz[i][j].setIcon(new ImageIcon(
+                        "src\\images\\" + mat[i][j] + ".png"));
+                matriz[i][j].setBounds(10 + (j * 25), 10 + (i * 25), 25, 25);
+                matriz[i][j].setVisible(true);
+                this.add(matriz[i][j], 0);
             }
         }
         drawPacMan();
         drawFruits();
-        drawPills();
         drawGhost();
 
         //updateObserver();
@@ -145,9 +138,6 @@ public class Player extends JPanel implements ActionListener{
         }
     }
 
-    /**
-     * Draw the fruits according to the position
-     */
     public void drawFruits(){
         ArrayList<Sprite> sprites = fruits.getSprites();
         for (Sprite sprite : sprites) {
@@ -162,24 +152,6 @@ public class Player extends JPanel implements ActionListener{
         }
     }
 
-    /**
-     * Draw pills in the correct position
-     */
-    public void drawPills(){
-        ArrayList<Pill> pills1 = pills.getPills();
-        for(Pill pill: pills1){
-            Integer px = pill.getX();
-            Integer py = pill.getY();
-            Integer size = pill.getSize();
-
-            nivel.setAInfo(px, py, 5);
-            matriz[py][px].setIcon(new ImageIcon(
-                    "src\\images\\50.png"));
-            matriz[py][px].setBounds(10 + (px * 25), 10 + (py * 25), 25, 25);
-            matriz[py][px].setVisible(true);
-            this.add(matriz[py][px], 0);
-        }
-    }
 
     /**
      * Draw player's name and score
@@ -198,13 +170,6 @@ public class Player extends JPanel implements ActionListener{
         record.setForeground(Color.white);
         record.setVisible(true);
         this.add(record,0);
-
-        pasTiempo = new JLabel("Tiempo pastilla: "+ pastTiempo);
-        pasTiempo.setBounds(700,100,200,30);
-        pasTiempo.setFont(smallFont);
-        pasTiempo.setForeground(Color.white);
-        pasTiempo.setVisible(true);
-        this.add(pasTiempo,0);
 
     }
 
@@ -234,7 +199,7 @@ public class Player extends JPanel implements ActionListener{
                 Integer px = pacman.getX();
                 switch (key) {
                     case KeyEvent.VK_RIGHT:
-                        if (mat[py][px + 1] !=2) {
+                        if (mat[py][px + 1] == 1 || mat[py][px + 1] == 0) {
                             pacman.setArriba(0);
                             pacman.setAbajo(0);
                             pacman.setDerecha(1);
@@ -242,7 +207,7 @@ public class Player extends JPanel implements ActionListener{
                         }
                         break;
                     case KeyEvent.VK_LEFT:
-                        if (mat[py][px - 1] != 2) {
+                        if (mat[py][px - 1] == 1 || mat[py][px - 1] == 0) {
                             pacman.setArriba(0);
                             pacman.setAbajo(0);
                             pacman.setDerecha(0);
@@ -250,7 +215,7 @@ public class Player extends JPanel implements ActionListener{
                         }
                         break;
                     case KeyEvent.VK_UP:
-                        if (mat[py - 1][px] != 2) {
+                        if (mat[py - 1][px] == 1 || mat[py - 1][px] == 0) {
                             pacman.setArriba(1);
                             pacman.setAbajo(0);
                             pacman.setDerecha(0);
@@ -258,7 +223,7 @@ public class Player extends JPanel implements ActionListener{
                         }
                         break;
                     case KeyEvent.VK_DOWN:
-                        if (mat[py + 1][px] != 2) {
+                        if (mat[py + 1][px] == 1 || mat[py + 1][px] == 0) {
                             pacman.setArriba(0);
                             pacman.setAbajo(1);
                             pacman.setDerecha(0);
@@ -277,95 +242,48 @@ public class Player extends JPanel implements ActionListener{
     public void movePacman(Integer[][] mat){
         Integer py = pacman.getY();
         Integer px = pacman.getX();
-        if(pacman.getArriba() == 1 && mat[py-1][px] !=2){
+        if(pacman.getArriba() == 1 && (mat[py-1][px] == 1 || mat[py-1][px] == 0 || mat[py-1][px] == 50)){
             if(mat[py-1][px] == 1 ){
                 puntos = puntos + 5;
                 record.setText("Puntos: "+ puntos);
             }
-            if(mat[py-1][px] == 50){
+            else if(mat[py-1][px] == 50){
                 Fruit fruit = (Fruit) fruits.get(px,py-1);
                 puntos = puntos + fruit.getPoints();
                 record.setText("Puntos: "+ puntos);
                 fruits.remove(px,py-1);
-            }
-            if(mat[py-1][px] == 5){
-                puntos = puntos + 150;
-                record.setText("Puntos: "+ puntos);
-                pills.removePill(px,py-1);
-                pills.setActive(true);
-                System.out.println(pills.isActive());
-                for(Ghost ghost: ghosts){
-                    ghost.setComible(true);
-                }
-            }
-            if(mat[py-1][px] == 58){
-                Ghost ghost = null;
-                for(Ghost ghost1: ghosts){
-                    if(ghost1.getX() == px && ghost1.getY() == (py-1)){
-                        ghost = ghost1;
-                        break;
-                    }
-                                    }
-                if(ghost.getComible()){
-                    puntos = puntos + 200;
-                    record.setText("Puntos: "+ puntos);
-                    ghosts.remove(ghost);
-                }
-                else {
-                    die();
-                }
             }
             nivel.setAInfo(px,py,0);
             matAux[py][px] = 0;
             pacman.setY(py-1);
             drawMaze();
         }
-        if(pacman.getAbajo() == 1 && mat[py+1][px] !=2){
+        if(pacman.getAbajo() == 1 && (mat[py+1][px] == 1 || mat[py+1][px] == 0|| mat[py+1][px] == 50)){
             if(mat[py+1][px] == 1 ){
                 puntos = puntos+ 5;
                 record.setText("Puntos: "+ puntos);
             }
-            if(mat[py+1][px] == 50){
+            else if(mat[py+1][px] == 50){
                 Fruit fruit = (Fruit) fruits.get(px,py+1);
                 puntos = puntos + fruit.getPoints();
                 record.setText("Puntos: "+ puntos);
                 fruits.remove(px,py+1);
-            }
-            if(mat[py+1][px] == 5){
-                puntos = puntos + 150;
-                record.setText("Puntos: "+ puntos);
-                pills.removePill(px,py+1);
-                pills.setActive(true);
-                System.out.println(pills.isActive());
-                for(Ghost ghost: ghosts){
-                    ghost.setComible(true);
-                }
             }
             nivel.setAInfo(px,py,0);
             matAux[py][px] = 0;
             pacman.setY(py+1);
             drawMaze();
         }
-        if(pacman.getDerecha() == 1 && mat[py][px+1]!= 2){
+        if(pacman.getDerecha() == 1 && (mat[py][px+1] == 1 || mat[py][px+1] == 0|| mat[py][px+1] == 50)){
             if(mat[py][px+1] == 1 ){
                 puntos = puntos+ 5;
                 record.setText("Puntos: "+ puntos);
             }
-            if(mat[py][px+1] == 50){
+            else if(mat[py][px+1] == 50){
                 Fruit fruit = (Fruit) fruits.get(px+1,py);
                 puntos = puntos + fruit.getPoints();
                 record.setText("Puntos: "+ puntos);
                 fruits.remove(px+1,py);
-            }
-            if(mat[py][px+1] == 5){
-                puntos = puntos + 150;
-                record.setText("Puntos: "+ puntos);
-                pills.removePill(px+1,py);
-                pills.setActive(true);
-                System.out.println(pills.isActive());
-                for(Ghost ghost: ghosts){
-                    ghost.setComible(true);
-                }
             }
 
             nivel.setAInfo(px,py,0);
@@ -373,26 +291,16 @@ public class Player extends JPanel implements ActionListener{
             pacman.setX(px+1);
             drawMaze();
         }
-        if(pacman.getIzquierda() == 1 && mat[py][px-1] != 2){
+        if(pacman.getIzquierda() == 1 && (mat[py][px-1] == 1 || mat[py][px-1] == 0|| mat[py][px-1] == 50)){
             if(mat[py][px-1] == 1 ){
                 puntos = puntos+ 5;
                 record.setText("Puntos: "+ puntos);
             }
-            if(mat[py][px-1] == 50){
+            else if(mat[py][px-1] == 50){
                 Fruit fruit = (Fruit) fruits.get(px-1,py);
                 puntos = puntos + fruit.getPoints();
                 record.setText("Puntos: "+ puntos);
                 fruits.remove(px-1,py);
-            }
-            if(mat[py][px-1] == 5){
-                puntos = puntos + 150;
-                record.setText("Puntos: "+ puntos);
-                pills.removePill(px-1,py);
-                pills.setActive(true);
-                System.out.println(pills.isActive());
-                for(Ghost ghost: ghosts){
-                    ghost.setComible(true);
-                }
             }
             nivel.setAInfo(px,py,0);
             matAux[py][px] = 0;
@@ -401,10 +309,6 @@ public class Player extends JPanel implements ActionListener{
         }
     }
 
-    /**
-     * Moves each ghost
-     * @param mat matrix level
-     */
     public void moveGhosts(Integer[][] mat){
         for (Ghost ghost: ghosts) {
             ghost.mover();
@@ -420,19 +324,6 @@ public class Player extends JPanel implements ActionListener{
         Integer[][] mat = nivel.getLeveldat();
         movePacman(mat);
         moveGhosts(mat);
-        pastTiempo = pills.getPillTime();
-        pasTiempo.setText("Pill timer: "+ pastTiempo);
-        if(pills.isActive()){
-
-            if(pills.pillTimer() == 0){
-
-                for(Ghost ghost: ghosts){
-                    ghost.setComible(false);
-                }
-            }
-
-        }
-
         Integer enc = 0;
         for (Integer i = 0; i < mat.length && enc == 0; i++) {
             for (Integer j = 0; j < mat[i].length && enc == 0; j++) {
@@ -447,11 +338,9 @@ public class Player extends JPanel implements ActionListener{
         }
         if(mat[pacman.getY()][pacman.getX()+1] == 58 ||mat[pacman.getY()][pacman.getX()-1] == 58||
                 mat[pacman.getY()-1][pacman.getX()] == 58||mat[pacman.getY()+1][pacman.getX()] == 58 ){
-            if(!ghosts.get(0).getComible()){
-                die();
-                timer.stop();
-            }
 
+            die();
+            timer.stop();
         }
         drawMaze();
     }
@@ -503,13 +392,5 @@ public class Player extends JPanel implements ActionListener{
 
     public void setFruits(Manage fruits) {
         this.fruits = fruits;
-    }
-
-    public Pills getPills() {
-        return pills;
-    }
-
-    public void setPills(Pills pills) {
-        this.pills = pills;
     }
 }
