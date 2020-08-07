@@ -3,6 +3,7 @@ package FakeServer;
 import Data.Commandos;
 import Data.CrearFantasma;
 import Data.CrearFruta;
+import Data.CrearPill;
 import Sprites.Player;
 
 import javax.swing.*;
@@ -18,6 +19,9 @@ public class FakePlayerServer extends JFrame {
     private JLabel jlabel1;
     private JButton crearFrutaButton;
     private JSpinner fruitPunt;
+    private JButton crearPastillaButton;
+    private JSpinner xPill;
+    private JSpinner yPill;
 
 
     private Player player;
@@ -44,11 +48,22 @@ public class FakePlayerServer extends JFrame {
                 crearFruta.ejecutar();
             }
         });
+
+        crearPastillaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Commandos crearPill = new CrearPill(player,getXPill(),getYPill());
+                crearPill.ejecutar();
+            }
+        });
+
     }
 
     public void initVariables(){
         setContentPane(panel1);
         fruitPunt.setModel(new SpinnerNumberModel(10000,100,null,100));
+        xPill.setModel(new SpinnerNumberModel(10,0,21,1));
+        yPill.setModel(new SpinnerNumberModel(11,0,21,1));
     }
 
     private String getGhostName() {
@@ -73,6 +88,12 @@ public class FakePlayerServer extends JFrame {
 
     private Integer getFruitPoints(){
         return (Integer)fruitPunt.getValue();
+    }
+    private Integer getXPill(){
+        return (Integer)xPill.getValue();
+    }
+    private Integer getYPill(){
+        return (Integer)yPill.getValue();
     }
 
     private void createUIComponents() {

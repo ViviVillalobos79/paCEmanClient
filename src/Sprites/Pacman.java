@@ -1,7 +1,6 @@
 package Sprites;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Pacman extends Sprite{
 
@@ -79,6 +78,14 @@ public class Pacman extends Sprite{
 
     public Integer getAbajo() {
         return abajo;
+    }
+
+    /**
+     * Resets the position to the first one
+     */
+    public void resetPos(){
+        this.setX(1);
+        this.setY(1);
     }
 
     public void setAbajo(Integer abajo) {
