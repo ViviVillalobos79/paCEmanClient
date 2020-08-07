@@ -9,9 +9,20 @@ public class Pills {
 
     private final ArrayList<Pill> pills = new ArrayList<>();
 
+    /**
+     * Add a pill to the group
+     * @param x In where the pill is going to be located in X
+     * @param y In where the pill is going to be located in Y
+     */
     public void add(Integer x, Integer y){
         pills.add(new Pill(x,y));
     }
+
+    /**
+     * Remove a pill from the list
+     * @param x where the pill is located in X
+     * @param y where the pill is located in Y
+     */
     public void removePill(Integer x,Integer y) {
         for (int i = 0; i < pills.size(); i++) {
             Pill pill = pills.get(i);
@@ -22,6 +33,12 @@ public class Pills {
         }
     }
 
+    /**
+     * A pill according to a position
+     * @param x where is located in X
+     * @param y where is located in Y
+     * @return the exact pill
+     */
     public Pill getPill(Integer x,Integer y) {
         for (int i = 0; i < pills.size(); i++) {
             Pill pill = pills.get(i);
@@ -36,6 +53,10 @@ public class Pills {
         return active;
     }
 
+    /**
+     * Handles the time
+     * @return how much time is missing after configure it
+     */
     public Integer pillTimer(){
         pillTime = pillTime - 40;
         if(pillTime <= 0) {

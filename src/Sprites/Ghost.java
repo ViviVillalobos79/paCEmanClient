@@ -63,21 +63,39 @@ public class Ghost extends Sprite{
      */
     public void setInitPosition(){
         if(name.equals("Clyde")){
-            this.setX(11);
+            if(levelNum == 3) {
+                this.setX(11);
+            }
+            else {
+                this.setX(8);
+            }
         }
         else if(name.equals("Blinky")){
-            this.setX(12);
+            if(levelNum == 3) {
+                this.setX(9);
+            }
         }
         else if(name.equals("Pinky")){
-            this.setX(13);
+            if (levelNum == 3) {
+                this.setX(10);
+            }
         }
         else if(name.equals("Inky")) {
-            this.setX(14);
+            if(levelNum == 3) {
+                this.setX(11);
+            }
         }
         else {
-            this.setX(17);
+            if(levelNum == 3) {
+                this.setX(12);
+            }
         }
-        this.setY(14);
+        if(levelNum==3) {
+            this.setY(14);
+        }
+        else {
+            this.setY(10);
+        }
     }
 
     /**

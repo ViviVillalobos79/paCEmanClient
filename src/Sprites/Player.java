@@ -1,12 +1,14 @@
 package Sprites;
 
 import Data.Constants;
-import Data.Observerdata;
 import GUI.ObserverWindow;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Player extends JPanel implements ActionListener{
@@ -24,15 +26,17 @@ public class Player extends JPanel implements ActionListener{
 
     private final ArrayList<Ghost> ghosts = new ArrayList<>();
 
-    private Manage fruits = new Manage();
-    private Pills pills = new Pills();
+    private Manage fruits;
+    private Pills pills;
 
     public String jugador;
     public Integer puntos;
     public Integer pastTiempo;
+    public Integer lifes;
     public JLabel nombre;
     public JLabel record;
     public JLabel pasTiempo;
+    public JLabel vida;
 
     ObserverWindow observerWindow;
 
@@ -64,7 +68,10 @@ public class Player extends JPanel implements ActionListener{
 
         this.setBackground(Color.BLACK);
 
-        levelNum = 3;
+        fruits = new Manage();
+        pills = new Pills();
+
+        levelNum = Constants.levelNum;
 
         nivel = new Nivel(levelNum);
 
@@ -76,7 +83,7 @@ public class Player extends JPanel implements ActionListener{
 
         matriz = new JLabel[31][26];
 
-        matAux = Constants.mat1;
+        matAux = Constants.getMat1(levelNum);
         for (Integer i = 0; i < 31; i++) {
             for (Integer j = 0; j < 26; j++) {
                 matriz[i][j] = new JLabel();
@@ -85,9 +92,34 @@ public class Player extends JPanel implements ActionListener{
         jugador = "Vivi";
         puntos = 0;
         pastTiempo = 0;
+        lifes = 3;
         //observerWindow = new ObserverWindow();
         //observerWindow.setVisible(true);
         //updateObserver();
+    }
+
+    /**
+     * Prepares everything for a new level
+     */
+    private void newLevel(){
+
+        Constants.levelNum = levelNum + 1;
+        if(Constants.levelNum <= 3){
+            this.removeAll();
+            initVariables();
+            ghosts.clear();
+        }
+    }
+
+    private void reset(){
+        Integer[][] mat = nivel.getLeveldat();
+        mat[pacman.getY()][pacman.getX()] = 0;
+        pacman.resetPos();
+        for(Ghost ghost: ghosts){
+            mat[ghost.getY()][ghost.getX()] = 0;
+            ghost.resetPos();
+        }
+        drawMaze();
     }
 
     /**
@@ -206,6 +238,13 @@ public class Player extends JPanel implements ActionListener{
         pasTiempo.setVisible(true);
         this.add(pasTiempo,0);
 
+        vida = new JLabel("Vidas: "+ lifes);
+        vida.setBounds(700,140,200,30);
+        vida.setFont(smallFont);
+        vida.setForeground(Color.white);
+        vida.setVisible(true);
+        this.add(vida,0);
+
     }
 
     /**
@@ -299,6 +338,7 @@ public class Player extends JPanel implements ActionListener{
                 }
             }
             if(mat[py-1][px] == 58){
+                System.out.println("va a haber un fantasma");
                 Ghost ghost = null;
                 for(Ghost ghost1: ghosts){
                     if(ghost1.getX() == px && ghost1.getY() == (py-1)){
@@ -306,6 +346,8 @@ public class Player extends JPanel implements ActionListener{
                         break;
                     }
                                     }
+                assert ghost != null;
+                System.out.println("comible " + ghost.getComible());
                 if(ghost.getComible()){
                     puntos = puntos + 200;
                     record.setText("Puntos: "+ puntos);
@@ -341,10 +383,28 @@ public class Player extends JPanel implements ActionListener{
                     ghost.setComible(true);
                 }
             }
-            nivel.setAInfo(px,py,0);
-            matAux[py][px] = 0;
-            pacman.setY(py+1);
-            drawMaze();
+            if(mat[py+1][px] == 58) {
+                Ghost ghost = null;
+                for (Ghost ghost1 : ghosts) {
+                    if (ghost1.getX() == px && ghost1.getY() == (py + 1)) {
+                        ghost = ghost1;
+                        break;
+                    }
+                }
+                assert ghost != null;
+                if (ghost.getComible()) {
+                    puntos = puntos + 200;
+                    record.setText("Puntos: " + puntos);
+                    ghosts.remove(ghost);
+                } else {
+                    die();
+                }
+            }
+                nivel.setAInfo(px, py, 0);
+                matAux[py][px] = 0;
+                pacman.setY(py + 1);
+                drawMaze();
+
         }
         if(pacman.getDerecha() == 1 && mat[py][px+1]!= 2){
             if(mat[py][px+1] == 1 ){
@@ -365,6 +425,23 @@ public class Player extends JPanel implements ActionListener{
                 System.out.println(pills.isActive());
                 for(Ghost ghost: ghosts){
                     ghost.setComible(true);
+                }
+            }
+            if(mat[py][px+1] == 58) {
+                Ghost ghost = null;
+                for (Ghost ghost1 : ghosts) {
+                    if (ghost1.getX() == (px+1) && ghost1.getY() == py) {
+                        ghost = ghost1;
+                        break;
+                    }
+                }
+                assert ghost != null;
+                if (ghost.getComible()) {
+                    puntos = puntos + 200;
+                    record.setText("Puntos: " + puntos);
+                    ghosts.remove(ghost);
+                } else {
+                    die();
                 }
             }
 
@@ -394,6 +471,23 @@ public class Player extends JPanel implements ActionListener{
                     ghost.setComible(true);
                 }
             }
+            if(mat[py][px-1]  == 58) {
+                Ghost ghost = null;
+                for (Ghost ghost1 : ghosts) {
+                    if (ghost1.getX() == (px-1) && ghost1.getY() == py) {
+                        ghost = ghost1;
+                        break;
+                    }
+                }
+                assert ghost != null;
+                if (ghost.getComible()) {
+                    puntos = puntos + 200;
+                    record.setText("Puntos: " + puntos);
+                    ghosts.remove(ghost);
+                } else {
+                    die();
+                }
+            }
             nivel.setAInfo(px,py,0);
             matAux[py][px] = 0;
             pacman.setX(px-1);
@@ -421,7 +515,7 @@ public class Player extends JPanel implements ActionListener{
         movePacman(mat);
         moveGhosts(mat);
         pastTiempo = pills.getPillTime();
-        pasTiempo.setText("Pill timer: "+ pastTiempo);
+        pasTiempo.setText("Tiempo pastilla: "+ pastTiempo);
         if(pills.isActive()){
 
             if(pills.pillTimer() == 0){
@@ -443,16 +537,27 @@ public class Player extends JPanel implements ActionListener{
         }
         if(enc == 0){
             win();
-            timer.stop();
-        }
-        if(mat[pacman.getY()][pacman.getX()+1] == 58 ||mat[pacman.getY()][pacman.getX()-1] == 58||
-                mat[pacman.getY()-1][pacman.getX()] == 58||mat[pacman.getY()+1][pacman.getX()] == 58 ){
-            if(!ghosts.get(0).getComible()){
-                die();
+            if(levelNum == 3) {
+                System.exit(0);
                 timer.stop();
-            }
 
+            }
         }
+        if(ghosts.size()>0) {
+            if (!ghosts.get(0).getComible()) {
+                if (mat[pacman.getY()][pacman.getX() + 1] == 58 || mat[pacman.getY()][pacman.getX() - 1] == 58 ||
+                        mat[pacman.getY() - 1][pacman.getX()] == 58 || mat[pacman.getY() + 1][pacman.getX()] == 58) {
+
+                    die();
+                    if(lifes == 0) {
+                        System.exit(0);
+                        timer.stop();
+
+                    }
+                }
+            }
+        }
+
         drawMaze();
     }
 
@@ -461,26 +566,49 @@ public class Player extends JPanel implements ActionListener{
      */
     private void win() {
         JOptionPane.showMessageDialog(this, "GANASTE!!!!");
-        this.setVisible(false);
+        if(levelNum <3){
+            newLevel();
+        }
+        else {
+            this.setVisible(false);
+            System.exit(0);
+        }
     }
+
+    /**
+     * Tells you when you die
+     */
     private void die() {
-        JOptionPane.showMessageDialog(this, "PERDISTE!!!!");
-        this.setVisible(false);
+
+        if(lifes > 0){
+            lifes = lifes - 1;
+            vida.setText("Vidas: "+ lifes);
+        }
+        if(lifes == 0){
+            JOptionPane.showMessageDialog(this, "PERDISTE!!!!");
+            this.setVisible(false);
+        }
+        if(lifes > 0){
+            reset();
+        }
+
+
     }
 
     public Nivel getNivel() {
         return nivel;
     }
 
-    public Pacman getPacman() {
+   /* public Pacman getPacman() {
         return pacman;
     }
+    */
 
     public ArrayList<Ghost> getGhosts() {
         return ghosts;
     }
 
-    public void updateObserver(){
+   /* public void updateObserver(){
         Observerdata observerdata = new Observerdata();
 
         observerdata.nivel = this.getNivel();
@@ -497,19 +625,26 @@ public class Player extends JPanel implements ActionListener{
 
     }
 
+    */
+
     public Manage getFruits() {
         return fruits;
     }
 
+    /*
     public void setFruits(Manage fruits) {
         this.fruits = fruits;
     }
+     */
 
     public Pills getPills() {
         return pills;
     }
 
+    /*
     public void setPills(Pills pills) {
         this.pills = pills;
     }
+    */
+
 }
